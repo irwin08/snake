@@ -7,7 +7,7 @@ class Snake:
     
     coords_list = [[0,0]]
     pos = [0,0]
-    snake_len = 1
+    snake_len = 5
 
     # 0 = don't move; 1 = up; 2 = right; 3 = down; 4 = left;
     direction = 0
@@ -41,24 +41,24 @@ class Snake:
         new_pos = [coord_x, coord_y]
 
         # check if in board
-        if new_pos not in self.board:
+        if not ((new_pos[0] >= 0) and (new_pos[0] < len(self.board)) and (new_pos[1] >= 0) and (new_pos[1] < len(self.board[0]))):
             error = True
         
         if self.snake_len == len(self.coords_list):
             self.coords_list.pop(0)
 
             # check if eating self
-            if new_pos in self.coords_list:
+            if new_pos in self.coords_list[:len(self.coords_list)-1] and not (self.direction == 0):
                 error = True
             
             self.coords_list.append(new_pos)
 
         elif self.snake_len > len(self.coords_list):
 
-            if new_pos in coords_list:
+            if new_pos in self.coords_list[:len(self.coords_list)-1] and not (self.direction == 0):
                 error = True
             self.coords_list.append(new_pos)
 
         self.pos = new_pos
-
+        
         return error

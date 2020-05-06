@@ -55,9 +55,9 @@ def main():
                     direction = 1
                 elif event.key == pygame.K_d:
                     direction = 2
-                elif event.type == pygame.K_s:
+                elif event.key == pygame.K_s:
                     direction = 3
-                elif event.type == pygame.K_a:
+                elif event.key == pygame.K_a:
                     direction = 4
                 
             
@@ -68,10 +68,15 @@ def main():
         
         game.move_snake(direction)
 
+        
         pygame.display.update()
 
         my_clock.tick(10)
 
+        if game.gameover == True:
+            break
+
+    print("Game Over")
 
 
 if __name__ == "__main__":
